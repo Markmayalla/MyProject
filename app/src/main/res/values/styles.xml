@@ -1,11 +1,53 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppMaterialTheme" parent="SuperMaterialTheme">
+
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="SuperMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
+
+    <style name="myToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+    </style>
+
+    <style name="myPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="form_in_background">
+
+    </style>
+
+    <style name="bottonPrimary">
+        <item name="android:radius">18dp</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorControlNormal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="textButton">
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="socialButton">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:radius">18dp</item>
+    </style>
+
+    <style name="AppMaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppMaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
