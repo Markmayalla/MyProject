@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_img2"
+    tools:context="tz.co.comptech.m_safariproduction.MainActivity">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        app:cardBackgroundColor="#E6FFFFFF"
+        app:cardCornerRadius="18dp"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_marginBottom="30dp"
+                android:src="@mipmap/msafiri_app_logo_main_2"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/firstNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorControlNormal2"
+                android:theme="@style/form_in_background">
+                <EditText
+                    android:id="@+id/firstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorControlNormal2">
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                style="@style/textButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Forgot Password ?"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                style="@style/bottonPrimary"
+                android:onClick="login"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register here !"
+                android:textColor="@color/colorControlNormal2"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="2dp"
+                    android:background="@color/colorControlNormal2"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OR CONNECT WITH"
+                    android:textColor="@color/colorControlNormal2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="2dp"
+                    android:background="@color/colorControlNormal2"></View>
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>
