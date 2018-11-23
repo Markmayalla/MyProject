@@ -1,5 +1,7 @@
 package tz.co.comptech.m_safariproduction.Api.BusWebServices;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -13,10 +15,10 @@ import tz.co.comptech.m_safariproduction.Model.ResponseModel;
 import tz.co.comptech.m_safariproduction.Model.UserLoginModel;
 
 public interface AuthenticationWebServices {
-    @GET(Authentication.select_user+"/{userid}")
-    Call<Customer> getUser(@Query("userid") String userId);
+    @POST(Authentication.select_user)
+    Call<Customer> getUser(@Body Customer Customer);
 
-    @POST(Authentication.register_user)
+    @POST(Authentication.select_user)
     Call<ResponseModel> createNewUser(@Body Customer Customer);
 
     @PUT(Authentication.update_user)

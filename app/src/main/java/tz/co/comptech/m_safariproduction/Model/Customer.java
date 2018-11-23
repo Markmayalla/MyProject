@@ -22,8 +22,18 @@ public class Customer {
  private String nida_id;
  private float __v;
 
+ public Customer(String first_name, String last_name, String email, String password, String gender, String address, String phone_no, String nida_id) {
+  this.first_name = first_name;
+  this.last_name = last_name;
+  this.email = email;
+  this.password = password;
+  this.gender = gender;
+  this.address = address;
+  this.phone_no = phone_no;
+  this.nida_id = nida_id;
+ }
 
- // Getter Methods 
+ // Getter Methods
 
  public String getFirst_name() {
   return first_name;

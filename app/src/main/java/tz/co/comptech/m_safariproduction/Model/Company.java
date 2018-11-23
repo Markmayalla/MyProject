@@ -7,6 +7,7 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import java.util.ArrayList;
 
 public class Company {
  private String company_name;
@@ -15,15 +16,9 @@ public class Company {
  private String website_url;
  private String profile;
  private boolean blocked;
- ArrayList < CompanyAddress > addresses = new ArrayList < CompanyAddress > ();
+ ArrayList<CompanyAddress> addresses = new ArrayList <CompanyAddress> ();
  private String _id;
  private float __v;
-
-
-
-
-
-
 
  // Getter Methods 
 

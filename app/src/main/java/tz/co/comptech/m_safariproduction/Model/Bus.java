@@ -7,6 +7,8 @@ package tz.co.comptech.m_safariproduction.Model;
 *
 */
 
+import java.util.ArrayList;
+
 public class Bus {
  BusSeatConfig Seat_configObject;
  private String bus_name;
@@ -15,7 +17,7 @@ public class Bus {
  private String manager_incharge;
  private String phone;
  private String schedulling_type;
- ArrayList < BusService > services = new ArrayList < BusService > ();
+ ArrayList< BusService > services = new ArrayList < BusService > ();
  private float visible;
  private String status;
  private String profile;

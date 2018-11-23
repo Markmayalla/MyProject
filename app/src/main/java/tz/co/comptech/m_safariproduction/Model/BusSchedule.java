@@ -7,6 +7,8 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import java.util.ArrayList;
+
 public class BusSchedule {
  private String company_id;
  private String bus_id;
@@ -17,7 +19,7 @@ public class BusSchedule {
  private String departure_time;
  private String arrival_time;
  FareLevel fare_per_level;
- ArrayList < PassingPoint > passing_points = new ArrayList < PassingPoint > ();
+ ArrayList< PassingPoint > passing_points = new ArrayList < PassingPoint > ();
  ArrayList < BookedSeat > booked_seat = new ArrayList < BookedSeat > ();
  ArrayList < PrevSeatHolder > prev_seat_holders = new ArrayList < PrevSeatHolder > ();
  private String trip_status;

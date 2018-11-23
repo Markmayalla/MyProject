@@ -1,5 +1,8 @@
 package tz.co.comptech.m_safariproduction.Api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -19,8 +22,8 @@ public class AppConnection {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.10.7/ggg/magazijuto/loan/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://192.168.10.4/ggg/magazijuto/loan/")
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .client(client)
                 .build();
         return retrofit;

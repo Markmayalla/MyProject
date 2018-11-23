@@ -16,7 +16,7 @@ public class AuthenticationViewModel extends ViewModel {
         authenticationRepository = new AuthenticationRepository();
     }
 
-    public Customer getUsers(String userId){
+    public Customer getUsers(Customer userId){
         customer = authenticationRepository.getUsers(userId);
         return customer;
     }

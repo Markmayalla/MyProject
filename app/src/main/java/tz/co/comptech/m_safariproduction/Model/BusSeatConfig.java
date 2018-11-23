@@ -7,13 +7,14 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import java.util.ArrayList;
 
 public class BusSeatConfig {
  private float no_rows;
  private float no_cols;
  private String cols_naming_type;
  private String rows_naming_type;
- ArrayList < SingleSeatObj > seats = new ArrayList < SingleSeatObj > ();
+ ArrayList< SingleSeatObj > seats = new ArrayList < SingleSeatObj > ();
 
 
 
