@@ -30,3 +30,4 @@ public interface AuthenticationWebServices {
     @POST(Authentication.validate_otp)
     Call<ResponseModel> validateOtp(@Body OTP otpModel);
 }
+
