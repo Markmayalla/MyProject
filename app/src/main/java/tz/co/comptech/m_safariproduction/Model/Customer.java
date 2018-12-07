@@ -7,20 +7,39 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class Customer {
+ @SerializedName("first_name")
  private String first_name;
+ @SerializedName("last_name")
  private String last_name;
+ @SerializedName("email")
  private String email;
+ @SerializedName("password")
  private String password;
+ @SerializedName("gender")
  private String gender;
+ @SerializedName("address")
  private String address;
+ @SerializedName("role")
  private String role;
- private boolean phone_verified;
- private boolean blocked;
+ @SerializedName("phone_verified")
+ private Boolean phone_verified;
+ @SerializedName("blocked")
+ private Boolean blocked;
+ @SerializedName("_id")
  private String _id;
+ @SerializedName("phone_no")
  private String phone_no;
+ @SerializedName("nida_id")
  private String nida_id;
- private float __v;
+ @SerializedName("__v")
+ private Float __v;
+ @SerializedName("created_date")
+ private String created_date;
+ @SerializedName("updated_date")
+ private String updated_date;
 
  public Customer(String first_name, String last_name, String email, String password, String gender, String address, String phone_no, String nida_id) {
   this.first_name = first_name;
@@ -33,7 +52,39 @@ public class Customer {
   this.nida_id = nida_id;
  }
 
+ public Customer(String first_name, String last_name, String email, String password, String gender, String address, String role, Boolean phone_verified, Boolean blocked, String _id, String phone_no, String nida_id, Float __v) {
+  this.first_name = first_name;
+  this.last_name = last_name;
+  this.email = email;
+  this.password = password;
+  this.gender = gender;
+  this.address = address;
+  this.role = role;
+  this.phone_verified = phone_verified;
+  this.blocked = blocked;
+  this._id = _id;
+  this.phone_no = phone_no;
+  this.nida_id = nida_id;
+  this.__v = __v;
+ }
+
+ public Customer(String first_name, String last_name, String email, String password, String phone_no) {
+  this.first_name = first_name;
+  this.last_name = last_name;
+  this.email = email;
+  this.password = password;
+  this.phone_no = phone_no;
+ }
+
  // Getter Methods
+
+ public String getCreated_date() {
+  return created_date;
+ }
+
+ public String getUpdated_date() {
+  return updated_date;
+ }
 
  public String getFirst_name() {
   return first_name;
@@ -63,11 +114,11 @@ public class Customer {
   return role;
  }
 
- public boolean getPhone_verified() {
+ public Boolean getPhone_verified() {
   return phone_verified;
  }
 
- public boolean getBlocked() {
+ public Boolean getBlocked() {
   return blocked;
  }
 
@@ -83,61 +134,7 @@ public class Customer {
   return nida_id;
  }
 
- public float get__v() {
+ public Float get__v() {
   return __v;
- }
-
- // Setter Methods 
-
- public void setFirst_name(String first_name) {
-  this.first_name = first_name;
- }
-
- public void setLast_name(String last_name) {
-  this.last_name = last_name;
- }
-
- public void setEmail(String email) {
-  this.email = email;
- }
-
- public void setPassword(String password) {
-  this.password = password;
- }
-
- public void setGender(String gender) {
-  this.gender = gender;
- }
-
- public void setAddress(String address) {
-  this.address = address;
- }
-
- public void setRole(String role) {
-  this.role = role;
- }
-
- public void setPhone_verified(boolean phone_verified) {
-  this.phone_verified = phone_verified;
- }
-
- public void setBlocked(boolean blocked) {
-  this.blocked = blocked;
- }
-
- public void set_id(String _id) {
-  this._id = _id;
- }
-
- public void setPhone_no(String phone_no) {
-  this.phone_no = phone_no;
- }
-
- public void setNida_id(String nida_id) {
-  this.nida_id = nida_id;
- }
-
- public void set__v(float __v) {
-  this.__v = __v;
  }
 }

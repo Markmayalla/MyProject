@@ -1,34 +1,38 @@
 package tz.co.comptech.m_safariproduction.Api.BusWebServices;
 
-import java.util.ArrayList;
+import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Query;
+import retrofit2.http.PartMap;
 import tz.co.comptech.m_safariproduction.Api.Authentication;
-import tz.co.comptech.m_safariproduction.Model.Customer;
-import tz.co.comptech.m_safariproduction.Model.OTP;
-import tz.co.comptech.m_safariproduction.Model.ResponseModel;
-import tz.co.comptech.m_safariproduction.Model.UserLoginModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerification;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPassword;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignIn;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201;
 
 public interface AuthenticationWebServices {
-    @POST(Authentication.select_user)
-    Call<Customer> getUser(@Body Customer Customer);
+    @Multipart
+    @POST(Authentication.register_user)
+    Call<SignUp201> signUp(@PartMap Map<String, RequestBody> register);
 
-    @POST(Authentication.select_user)
-    Call<ResponseModel> createNewUser(@Body Customer Customer);
-
-    @PUT(Authentication.update_user)
-    Call<ResponseModel> updateUser(@Body Customer Customer);
-
+    @Multipart
     @POST(Authentication.login_user)
-    Call<Customer> loginToSystem(@Body UserLoginModel userLoginModel);
+    Call<SignIn> signIn(@PartMap Map<String, RequestBody> login);
 
+    @Multipart
+    @POST(Authentication.resend_otp)
+    Call<SignUp201> resendOtp(@PartMap Map<String, RequestBody> otp);
+
+    @Multipart
     @POST(Authentication.validate_otp)
-    Call<ResponseModel> validateOtp(@Body OTP otpModel);
+    Call<OtpVerification> verifyOtp(@PartMap Map<String, RequestBody> otpValidate);
+
+    @Multipart
+    @POST(Authentication.reset_password_by_phone)
+    Call<ResetPassword> resetPassword(@PartMap Map<String, RequestBody> password);
 }
 
 

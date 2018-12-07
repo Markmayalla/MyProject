@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class BusRoute {
  private String from_center;
  private String to_center;
- ArrayList< BusCenter > points;
+ ArrayList<BusCenter> points;
 
 
  // Getter Methods 

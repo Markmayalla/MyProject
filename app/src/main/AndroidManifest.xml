@@ -6,7 +6,8 @@
         Use permission for allowing access to M-Safari Server
         Required for volley Connection
     -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,13 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".Register" />
+        <activity android:name=".Auth.Authentication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"></activity>
     </application>
 
 </manifest>
