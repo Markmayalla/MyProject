@@ -10,8 +10,6 @@ public class Authentication extends AppConnection {
      */
     public final static String authApi = "auth/";
     public final static String register_user = authApi + "signup_by_phone";
-    public final static String update_user = authApi + "users/update.php"; //not in use
-    public final static String select_user = authApi + "users/select.php"; //not in use
     public final static String login_user = authApi + "login_by_phone/";
     public final static String validate_otp = authApi + "verify_customer_phone/";
     public final static String resend_otp = authApi + "resend_signup_otp/";
