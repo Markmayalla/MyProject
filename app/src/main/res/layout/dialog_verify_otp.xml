@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonConfirm"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

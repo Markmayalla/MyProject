@@ -1,28 +1,20 @@
     package tz.co.comptech.m_safariproduction.Auth;
 
-    import android.app.ProgressDialog;
-    import android.arch.lifecycle.ViewModelProviders;
+    import androidx.lifecycle.ViewModelProviders;
     import android.content.Intent;
-    import android.support.v7.app.AlertDialog;
-    import android.support.v7.app.AppCompatActivity;
+    import androidx.appcompat.app.AlertDialog;
+    import androidx.appcompat.app.AppCompatActivity;
     import android.os.Bundle;
-    import android.support.v7.widget.AppCompatButton;
+    import androidx.appcompat.widget.AppCompatButton;
     import android.util.Log;
-    import android.view.LayoutInflater;
     import android.view.View;
     import android.widget.Button;
     import android.widget.EditText;
     import android.widget.TextView;
     import android.widget.Toast;
 
-    import com.android.volley.Request;
-    import com.android.volley.toolbox.StringRequest;
-
-    import org.json.JSONException;
-
     import java.util.HashMap;
     import java.util.Map;
-    import java.util.Objects;
 
     import okhttp3.RequestBody;
     import tz.co.comptech.m_safariproduction.Helpers.ErrorSms;
@@ -32,8 +24,6 @@
     import tz.co.comptech.m_safariproduction.Helpers.SharedValues;
     import tz.co.comptech.m_safariproduction.Helpers.ViewGutter;
     import tz.co.comptech.m_safariproduction.R;
-    import tz.co.comptech.m_safariproduction.Register;
-    import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignIn;
     import tz.co.comptech.m_safariproduction.ViewModel.AuthenticationViewModel;
 
     public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {

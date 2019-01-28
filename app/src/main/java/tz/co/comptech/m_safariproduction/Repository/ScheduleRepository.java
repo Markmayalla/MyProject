@@ -1,6 +1,6 @@
 package tz.co.comptech.m_safariproduction.Repository;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.Map;
 
@@ -10,7 +10,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tz.co.comptech.m_safariproduction.Api.AppConnection;
 import tz.co.comptech.m_safariproduction.Api.BusWebServices.ScheduleWebService;
-import tz.co.comptech.m_safariproduction.Model.BusRoute;
 import tz.co.comptech.m_safariproduction.Model.BusSchedule;
 import tz.co.comptech.m_safariproduction.Model.ResponseModel;
 

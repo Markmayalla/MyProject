@@ -1,7 +1,7 @@
 package tz.co.comptech.m_safariproduction.Repository;
 
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.util.Log;
 
 import java.util.Map;

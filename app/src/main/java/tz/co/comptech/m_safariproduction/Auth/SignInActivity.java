@@ -1,14 +1,13 @@
 package tz.co.comptech.m_safariproduction.Auth;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +18,6 @@ import tz.co.comptech.m_safariproduction.Helpers.FormHelper;
 import tz.co.comptech.m_safariproduction.Helpers.FormValues;
 import tz.co.comptech.m_safariproduction.Helpers.ViewGutter;
 import tz.co.comptech.m_safariproduction.R;
-import tz.co.comptech.m_safariproduction.Register;
 import tz.co.comptech.m_safariproduction.ViewModel.AuthenticationViewModel;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {

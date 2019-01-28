@@ -1,12 +1,8 @@
 package tz.co.comptech.m_safariproduction.Auth;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.Map;

@@ -19,7 +19,7 @@ public interface ScheduleWebService {
 
     @Multipart
     @PUT(Bus.cancelTrip)
-    Call<ResponseModel> cancelTrip(@PartMap Map<String, RequestBody> trip);
+    Call<RequestBody> cancelTrip(@PartMap Map<String, RequestBody> trip);
 
     @Multipart
     @PUT(Bus.updateTrip)

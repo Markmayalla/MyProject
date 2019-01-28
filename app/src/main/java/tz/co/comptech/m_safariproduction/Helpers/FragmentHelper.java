@@ -1,12 +1,10 @@
 package tz.co.comptech.m_safariproduction.Helpers;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
-import java.util.Map;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import tz.co.comptech.m_safariproduction.Auth.ResetPassword;
 import tz.co.comptech.m_safariproduction.Auth.SignIn;

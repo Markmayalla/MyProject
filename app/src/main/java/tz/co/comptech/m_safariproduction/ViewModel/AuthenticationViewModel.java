@@ -1,12 +1,11 @@
 package tz.co.comptech.m_safariproduction.ViewModel;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import java.util.Map;
 
 import okhttp3.RequestBody;
-import tz.co.comptech.m_safariproduction.Model.Customer;
 import tz.co.comptech.m_safariproduction.Repository.AuthenticationRepository;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpReset;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerification;

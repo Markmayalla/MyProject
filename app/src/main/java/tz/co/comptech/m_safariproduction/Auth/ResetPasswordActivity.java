@@ -1,15 +1,12 @@
 package tz.co.comptech.m_safariproduction.Auth;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Map;
-import java.util.Queue;
 
 import okhttp3.RequestBody;
 import tz.co.comptech.m_safariproduction.Helpers.FormHelper;
