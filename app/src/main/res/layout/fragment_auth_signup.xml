@@ -51,5 +51,12 @@
         android:text="Sign In"
         android:textAllCaps="false"
         android:id="@+id/fragment_auth_signup_signin"/>
+
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:visibility="gone"
+         android:id="@+id/m_safari_error_text"/>
     </LinearLayout>
+
 </ScrollView>

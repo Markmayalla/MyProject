@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tz.co.comptech.m_safariproduction">
-
     <!--
         Use permission for allowing access to M-Safari Server
         Required for volley Connection
@@ -15,17 +14,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Auth.Authentication">
+        <activity android:name=".Auth.ResetPasswordActivity"></activity>
+        <activity android:name=".Auth.SignInActivity" />
+        <activity android:name=".Auth.Dashboard" />
+        <activity android:name=".Auth.VerifyPhoneActivity" />
+        <activity android:name=".Auth.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Register" />
+        <activity android:name=".Auth.Authentication" />
     </application>
 
 </manifest>

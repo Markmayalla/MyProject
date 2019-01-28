@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_auth_signup);
         registrationData = new HashMap<>();
         authenticationViewModel = ViewModelProviders.of(this).get(AuthenticationViewModel.class);
     }
@@ -41,13 +41,12 @@ public class MainActivity extends AppCompatActivity {
             String backSms = "";
             assert signUp201 != null;
             try {
-                customer_id = backSms = signUp201.getCustomer().get_id();
                 otp_id = signUp201.get_id();
             }catch (NullPointerException e){
-                backSms = signUp201.getSms();
+               // backSms = signUp201.getSms();
             }
 
-            TextView myText = (TextView)findViewById(R.id.myText);
+            TextView myText = (TextView)findViewById(R.id.m_safari_error_text);
             myText.setText(backSms);
         });
     }
@@ -56,42 +55,41 @@ public class MainActivity extends AppCompatActivity {
         registrationData = new HashMap<>();
         registrationData.put("customer_id",FormHelper.createPartFormString(customer_id));
         authenticationViewModel.resendOtp(registrationData).observe(this, signUp201 -> {
-            TextView myText = (TextView)findViewById(R.id.myText);
-            myText.setText("Sent to " + signUp201.getCustomer().getPhone_no());
+            TextView myText = (TextView)findViewById(R.id.m_safari_error_text);
         });
     }
 
     public void verifyPhone(View view) {
-        EditText otp = (EditText)findViewById(R.id.otp_secrete);
+        EditText otp = (EditText)findViewById(R.id.fragment_auth_verify_phone_otp);
         registrationData = new HashMap<>();
         registrationData.put("customer_id",FormHelper.createPartFormString(customer_id));
         registrationData.put("_id",FormHelper.createPartFormString(otp_id));
         registrationData.put("otp_secrete",FormHelper.createPartFormString(otp.getText().toString()));
 
         authenticationViewModel.verifyPhone(registrationData).observe(this, otpVerification -> {
-            TextView myText = (TextView)findViewById(R.id.myText);
+            TextView myText = (TextView)findViewById(R.id.m_safari_error_text);
             myText.setText("Verification is  " + otpVerification.getVerification());
         });
     }
 
     public void resetPassword(View view) {
-        EditText phone = (EditText)findViewById(R.id.phone_no);
+        EditText phone = (EditText)findViewById(R.id.fragment_auth_signup_phone_no);
         registrationData = new HashMap<>();
         registrationData.put("phone_no",FormHelper.createPartFormString(phone.getText().toString()));
         authenticationViewModel.resetPassword(registrationData).observe(this, resetPassword -> {
-            TextView myText = (TextView)findViewById(R.id.myText);
+            TextView myText = (TextView)findViewById(R.id.m_safari_error_text);
             myText.setText("," + resetPassword.getSms());
         });
     }
 
     public void signIn(View view) {
-        EditText phone = (EditText)findViewById(R.id.phone_no);
-        EditText password = (EditText)findViewById(R.id.otp_secrete);
+        EditText phone = (EditText)findViewById(R.id.fragment_auth_signin_phone);
+        EditText password = (EditText)findViewById(R.id.fragment_auth_verify_phone_otp);
         registrationData = new HashMap<>();
         registrationData.put("phone_no",FormHelper.createPartFormString(phone.getText().toString()));
         registrationData.put("password",FormHelper.createPartFormString(password.getText().toString()));
         authenticationViewModel.signIn(registrationData).observe(this, signIn -> {
-            TextView myText = (TextView)findViewById(R.id.myText);
+            TextView myText = (TextView)findViewById(R.id.m_safari_error_text);
             if(signIn.getStatus()) {
                 myText.setText(signIn.getSms() + " " + signIn.getData().getCustomer().getFirst_name() + " " + signIn.getData().getCustomer().getLast_name());
             }else{

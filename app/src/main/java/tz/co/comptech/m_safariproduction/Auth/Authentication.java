@@ -61,17 +61,7 @@ public class Authentication extends AppCompatActivity implements SignUp.OnSignUp
 
     @Override
     public void onSignUpClicked(Map<String, String> string, Map<String, RequestBody> formData) {
-        if(Objects.requireNonNull(string.get("activity")).equals(activitySignIn)){
-            setSignIn();
-        }else if(Objects.requireNonNull(string.get("activity")).equals(activitySignUp)){
-            authenticationViewModel.getSignUp201(formData).observe(this,signUpData -> {
-                if (!Objects.requireNonNull(signUpData).getToken().equals("")) {
-                    setVerifyPhone();
-                }else{
-                    repSignUp();
-                }
-            });
-        }
+
     }
 
     @Override

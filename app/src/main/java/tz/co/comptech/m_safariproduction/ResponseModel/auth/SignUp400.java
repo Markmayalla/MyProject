@@ -4,5 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class SignUp400 {
     @SerializedName("msg")
-    String sms;
+    private String sms;
+
+    public String getSms() {
+        return sms;
+    }
 }

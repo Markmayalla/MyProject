@@ -8,6 +8,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
 import tz.co.comptech.m_safariproduction.Api.Authentication;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpReset;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerification;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPassword;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignIn;
@@ -24,7 +25,7 @@ public interface AuthenticationWebServices {
 
     @Multipart
     @POST(Authentication.resend_otp)
-    Call<SignUp201> resendOtp(@PartMap Map<String, RequestBody> otp);
+    Call<OtpReset> resendOtp(@PartMap Map<String, RequestBody> otp);
 
     @Multipart
     @POST(Authentication.validate_otp)

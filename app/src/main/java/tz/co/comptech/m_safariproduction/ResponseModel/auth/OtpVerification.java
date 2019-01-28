@@ -9,6 +9,10 @@ public class OtpVerification {
     @SerializedName("verification")
     private Boolean verification;
 
+    @SerializedName("key")
+    private String key;
+
+
     public String getCustomer_id() {
         return customer_id;
     }
@@ -16,4 +20,6 @@ public class OtpVerification {
     public Boolean getVerification() {
         return verification;
     }
+
+    public String getKey() { return key; }
 }

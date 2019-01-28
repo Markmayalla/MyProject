@@ -23,7 +23,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Sign Un"
+        android:textAllCaps="false"
+        android:id="@+id/fragment_auth_signup_button"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Forget Password"
         android:textAllCaps="false"
         android:id="@+id/fragment_auth_signin_forget_password"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/sign_m_safari_error_text"/>
 </LinearLayout>

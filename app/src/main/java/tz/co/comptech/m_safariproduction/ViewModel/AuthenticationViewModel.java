@@ -8,6 +8,7 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import tz.co.comptech.m_safariproduction.Model.Customer;
 import tz.co.comptech.m_safariproduction.Repository.AuthenticationRepository;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpReset;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerification;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPassword;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignIn;
@@ -17,6 +18,7 @@ public class AuthenticationViewModel extends ViewModel {
 
     private AuthenticationRepository authenticationRepository;
     private MutableLiveData<SignUp201> signUp201;
+    private MutableLiveData<OtpReset> otpReset;
     private MutableLiveData<OtpVerification> otpVerification;
     private MutableLiveData<ResetPassword> resetPassword;
     private MutableLiveData<SignIn> signIn;
@@ -34,12 +36,12 @@ public class AuthenticationViewModel extends ViewModel {
         return signUp201;
     }
 
-    public  MutableLiveData<SignUp201> resendOtp(final Map<String , RequestBody> otpData){
-        if(signUp201 == null){
-            signUp201 = new MutableLiveData<>();
+    public  MutableLiveData<OtpReset> resendOtp(final Map<String , RequestBody> otpData){
+        if(otpReset == null){
+            otpReset = new MutableLiveData<>();
         }
-        signUp201 = authenticationRepository.resendOtp(otpData);
-        return signUp201;
+        otpReset = authenticationRepository.resendOtp(otpData);
+        return otpReset;
     }
 
     public MutableLiveData<OtpVerification>  verifyPhone(final  Map<String, RequestBody> otpData){
