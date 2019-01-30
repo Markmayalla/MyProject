@@ -6,11 +6,13 @@ import okhttp3.RequestBody;
 import tz.co.comptech.m_safariproduction.Api.Authentication;
 import tz.co.comptech.m_safariproduction.Helpers.FormHelper;
 import tz.co.comptech.m_safariproduction.Helpers.FormValues;
+import tz.co.comptech.m_safariproduction.Helpers.ServiceNameList;
 import tz.co.comptech.m_safariproduction.Helpers.SharedPreferenceHelper;
 import tz.co.comptech.m_safariproduction.Helpers.SharedValues;
 import tz.co.comptech.m_safariproduction.Helpers.StringHelper;
 import tz.co.comptech.m_safariproduction.Helpers.ViewGutter;
 import tz.co.comptech.m_safariproduction.R;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OnPasswordRestModel;
 import tz.co.comptech.m_safariproduction.ViewModel.ApplicationViewModel;
 import tz.co.comptech.m_safariproduction.ViewModel.AuthenticationViewModel;
 
@@ -20,6 +22,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -78,13 +82,27 @@ public class VerifyPhoneActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void funVerifyOtp() {
+        String service = sharedPreferenceHelper.getString(SharedValues.OTP_SERVICE,"");
         formData.put(FormValues.OTP_MOBILE, FormHelper.createPartFormString(sharedPreferenceHelper.getString(SharedValues.OTP_MOBILE,"")));
-        formData.put(FormValues.OTP_SERVICE, FormHelper.createPartFormString(sharedPreferenceHelper.getString(SharedValues.OTP_SERVICE,"")));
+        formData.put(FormValues.OTP_SERVICE, FormHelper.createPartFormString(service));
         formData.put(FormValues.OTP_SECRETE, FormHelper.createPartFormString(ViewGutter.getString(otp_secrete)));
         authView.postDataToServer(Authentication.validate_otp, formData).observe(VerifyPhoneActivity.this, otpVerification -> {
             if(StringHelper.compare(otpVerification,"200")){
-                Log.e("d","success " + otpVerification);
-                startActivity(new Intent(VerifyPhoneActivity.this,Dashboard.class));
+                Log.e("back_data","success " + otpVerification);
+                if(ServiceNameList.SERVICE_PASSWORD_RESET.equals(service)) {
+                    Gson gson = new Gson();
+                    OnPasswordRestModel onPasswordRestModel = gson.fromJson(otpVerification, OnPasswordRestModel.class);
+                    sharedPreferenceHelper = new SharedPreferenceHelper(VerifyPhoneActivity.this, SharedValues.SHARED_RESET_DATA);
+                    sharedPreferenceHelper.editor();
+                    sharedPreferenceHelper.setString(SharedValues.CUSTOMER_ID,onPasswordRestModel.getDataModel().getCustomer_id());
+                    sharedPreferenceHelper.setString(SharedValues.KEY,onPasswordRestModel.getDataModel().getKey());
+                    sharedPreferenceHelper.setBoolean(SharedValues.VERIFICATION,onPasswordRestModel.getDataModel().getVerification());
+                    sharedPreferenceHelper.apply();
+
+                    startActivity(new Intent(VerifyPhoneActivity.this, ResetPasswordActivity.class));
+                }else if(ServiceNameList.SERVICE_REGISTER.equals(service)){
+                    startActivity(new Intent(VerifyPhoneActivity.this, Dashboard.class));
+                }
                 finish();
             }else if(StringHelper.compare(otpVerification,"400")){
                 Log.e("d","error");

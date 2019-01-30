@@ -27,6 +27,7 @@ import tz.co.comptech.m_safariproduction.Helpers.ViewGutter;
 import tz.co.comptech.m_safariproduction.R;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.ErrorDataModel;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignInModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201Model;
 import tz.co.comptech.m_safariproduction.ViewModel.ApplicationViewModel;
 import tz.co.comptech.m_safariproduction.ViewModel.AuthenticationViewModel;
 
@@ -68,7 +69,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fragment_auth_signin_forget_password:
-                    funSignPassword();
+                    if(!phone.getText().toString().isEmpty()) {
+                        funSignPassword();
+                    }else{
+                        ErrorSms.setErrorSms(errorText,"Phone Required");
+                    }
                 break;
             case R.id.fragment_auth_signin_button:
                     funSignIn();
@@ -126,6 +131,27 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void funSignPassword() {
-        startActivity(new Intent(SignInActivity.this, ResetPasswordActivity.class));
+        formData.put(FormValues.PHONE_NO, FormHelper.createPartFormString(ViewGutter.getString(phone)));
+        authView.postDataToServer(Authentication.request_pass_reset_otp,formData).observe(this, responseBody -> {
+            Gson gson = new Gson();
+            if(StringHelper.getCode(responseBody).equals("400")){
+                ErrorDataModel errorDataModel = gson.fromJson(responseBody,ErrorDataModel.class);
+                ErrorSms.setErrorSms(errorText,errorDataModel.getSms());
+            }
+
+            if(StringHelper.getCode(responseBody).equals("201")){
+                SignUp201Model success = gson.fromJson(responseBody,SignUp201Model.class);
+                ErrorSms.setErrorSms(errorText,success.getSms());
+                SharedPreferenceHelper sharedPreferenceHelper = new SharedPreferenceHelper(getApplicationContext(), SharedValues.SHARED_REGISTER_DATA);
+                sharedPreferenceHelper.editor();
+                sharedPreferenceHelper.setString(SharedValues.OTP_CUSTOMER_ID,success.getDataModel().getCustomer_id());
+                sharedPreferenceHelper.setString(SharedValues.OTP_ID,success.getDataModel().get_id());
+                sharedPreferenceHelper.setString(SharedValues.OTP_MOBILE,success.getDataModel().getOtp_mobile());
+                sharedPreferenceHelper.setString(SharedValues.OTP_SERVICE,success.getDataModel().getService());
+                sharedPreferenceHelper.apply();
+                startActivity(new Intent(SignInActivity.this, VerifyPhoneActivity.class));
+            }
+
+        });
     }
 }

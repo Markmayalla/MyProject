@@ -30,4 +30,9 @@ public class SharedValues {
     public final static String _ID = "_id";
     public final static String PHONE_NO = "phone_no";
     public final static String EMAIL = "email";
+
+    public final static String SHARED_RESET_DATA = "PasswordResetData";
+    public final static String CUSTOMER_ID = "customer_id";
+    public final static String VERIFICATION = "verification";
+    public final static String KEY = "key";
 }
