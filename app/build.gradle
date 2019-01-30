@@ -73,6 +73,13 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
     /*
-    Utilities
+    Utilities & Accessories
      */
+
+    //Step View
+    implementation 'com.shuhart.stepview:stepview:1.4.0'
+
+    //Pin View
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.0.1'
+
 }

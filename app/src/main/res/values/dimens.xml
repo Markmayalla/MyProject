@@ -4,4 +4,7 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="button_width">64dp</dimen>
+    <dimen name="button_font">14sp</dimen>
 </resources>

@@ -4,4 +4,19 @@
     <string name="resend_otp">Resend Otp</string>
     <string name="reset_password">Resert Password</string>
     <string name="verify_phone">verify Phone</string>
+
+    <string-array name="countries">
+        <item>Tanzania</item>
+        <item>Uganda</item>
+        <item>Kenya</item>
+        <item>Rwanda</item>
+        <item>Burundi</item>
+    </string-array>
+
+    <string-array name="registration_steps">
+        <item>Basic</item>
+        <item>Address</item>
+        <item>OTP</item>
+        <item>Password</item>
+    </string-array>
 </resources>

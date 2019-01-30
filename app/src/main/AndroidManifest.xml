@@ -14,7 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme">
-        <activity android:name=".Auth.VerifyPhoneActivity"></activity>
+        <activity android:name=".LayoutTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Auth.VerifyPhoneActivity" />
         <activity android:name=".Auth.ResetPasswordActivity" />
         <activity android:name=".Auth.SignInActivity" />
         <activity android:name=".Auth.Dashboard" />

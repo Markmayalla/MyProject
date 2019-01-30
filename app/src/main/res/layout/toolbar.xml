@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/actionBarSize"
-    android:layout_marginBottom="10dp"
-    android:theme="@style/myToolbarTheme"
-    app:popupTheme="@style/myPopupTheme">
+    android:layout_marginBottom="10dp">
 
 </androidx.appcompat.widget.Toolbar>
