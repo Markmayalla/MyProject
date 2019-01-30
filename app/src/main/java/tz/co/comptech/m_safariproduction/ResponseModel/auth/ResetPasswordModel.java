@@ -2,7 +2,7 @@ package tz.co.comptech.m_safariproduction.ResponseModel.auth;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResetPassword {
+public class ResetPasswordModel {
     @SerializedName("customer_id")
     private String customer_id;
 

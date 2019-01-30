@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:id="@+id/data_login_name"
         android:textSize="40dp"/>
 
     <Button

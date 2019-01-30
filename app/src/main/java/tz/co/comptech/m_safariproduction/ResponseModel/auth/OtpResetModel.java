@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.Nullable;
 
-public class OtpReset {
+public class OtpResetModel {
     @SerializedName("customer_id")
     private String customer_id;
     @SerializedName("otp_mobile")

@@ -23,7 +23,7 @@ public class AppConnection {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://52.47.72.148:9999/api-android-v1/")
-                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().serializeNulls().setLenient().create()))
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                 .client(client)
                 .build();
         return retrofit;

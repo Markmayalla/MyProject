@@ -4,32 +4,35 @@ package tz.co.comptech.m_safariproduction.Repository;
 import androidx.lifecycle.MutableLiveData;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tz.co.comptech.m_safariproduction.Api.AppConnection;
 import tz.co.comptech.m_safariproduction.Api.BusWebServices.AuthenticationWebServices;
 import tz.co.comptech.m_safariproduction.Api.ServiceGenerator;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpReset;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerification;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPassword;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignIn;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp400;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpResetModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerificationModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPasswordModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignInModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201Model;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.ErrorModel;
 
 public class AuthenticationRepository {
     public AuthenticationWebServices authenticationWebServices;
     public AuthenticationWebServices loginService;
 
-    MutableLiveData<SignUp201> signUp201;
-    MutableLiveData<OtpReset> otpReset;
-    MutableLiveData<SignUp400> signUp400;
-    MutableLiveData<OtpVerification> otpVerification;
-    MutableLiveData<ResetPassword> resetPassword;
-    MutableLiveData<SignIn> signIn;
+    MutableLiveData<SignUp201Model> signUp201;
+    MutableLiveData<OtpResetModel> otpReset;
+    MutableLiveData<ErrorModel> signUp400;
+    MutableLiveData<OtpVerificationModel> otpVerification;
+    MutableLiveData<ResetPasswordModel> resetPassword;
+    MutableLiveData<SignInModel> signIn;
+    MutableLiveData<String> responseBody;
     public AuthenticationRepository() {
         authenticationWebServices = AppConnection.getClient().create(AuthenticationWebServices.class);
         signUp201 = new MutableLiveData<>();
@@ -37,89 +40,90 @@ public class AuthenticationRepository {
         otpReset = new MutableLiveData<>();
         otpVerification = new MutableLiveData<>();
         resetPassword = new MutableLiveData<>();
+        responseBody = new MutableLiveData<>();
         signIn = new MutableLiveData<>();
     }
 
 
-    public MutableLiveData<SignUp201> getSignUp(final Map<String, RequestBody> signUpData) {
-        authenticationWebServices.signUp(signUpData).enqueue(new Callback<SignUp201>() {
-            @Override
-            public void onResponse(Call<SignUp201> call, Response<SignUp201> response) {
-                if (response.isSuccessful()) {
-                    signUp201.postValue(response.body());
-                }else{
+    public MutableLiveData<String> getSignUp(final Map<String, RequestBody> signUpData) {
 
+        authenticationWebServices.signUp(signUpData).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        responseBody.postValue(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Log.e("Back_Request", response.code() +" " +response.message());
                 }
 
-              Log.e("Back_Request", response.code() + response.message());
             }
 
             @Override
-                public void onFailure(Call<SignUp201> call, Throwable t) {
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
             }
         });
-        return signUp201;
+        return responseBody;
     }
 
-    public MutableLiveData<OtpReset> resendOtp(final Map<String, RequestBody> otpData){
-        authenticationWebServices.resendOtp(otpData).enqueue(new Callback<OtpReset>() {
+    public MutableLiveData<OtpResetModel> resendOtp(final Map<String, RequestBody> otpData){
+        authenticationWebServices.resendOtp(otpData).enqueue(new Callback<OtpResetModel>() {
             @Override
-            public void onResponse(Call<OtpReset> call, Response<OtpReset> response) {
+            public void onResponse(Call<OtpResetModel> call, Response<OtpResetModel> response) {
                otpReset.postValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<OtpReset> call, Throwable t) {
+            public void onFailure(Call<OtpResetModel> call, Throwable t) {
 
             }
         });
         return otpReset;
     }
 
-    public MutableLiveData<OtpVerification> verifyPhone(final Map<String, RequestBody> otpData){
-        authenticationWebServices.verifyOtp(otpData).enqueue(new Callback<OtpVerification>() {
+    public MutableLiveData<OtpVerificationModel> verifyPhone(final Map<String, RequestBody> otpData){
+        authenticationWebServices.verifyOtp(otpData).enqueue(new Callback<OtpVerificationModel>() {
             @Override
-            public void onResponse(Call<OtpVerification> call, Response<OtpVerification> response) {
+            public void onResponse(Call<OtpVerificationModel> call, Response<OtpVerificationModel> response) {
                 otpVerification.postValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<OtpVerification> call, Throwable t) {
+            public void onFailure(Call<OtpVerificationModel> call, Throwable t) {
 
             }
         });
         return otpVerification;
     }
 
-    public MutableLiveData<ResetPassword> resetPassword(final Map<String , RequestBody> passwordReset){
-        authenticationWebServices.resetPassword(passwordReset).enqueue(new Callback<ResetPassword>() {
+    public MutableLiveData<ResetPasswordModel> resetPassword(final Map<String , RequestBody> passwordReset){
+        authenticationWebServices.resetPassword(passwordReset).enqueue(new Callback<ResetPasswordModel>() {
             @Override
-            public void onResponse(Call<ResetPassword> call, Response<ResetPassword> response) {
+            public void onResponse(Call<ResetPasswordModel> call, Response<ResetPasswordModel> response) {
                 resetPassword.postValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ResetPassword> call, Throwable t) {
+            public void onFailure(Call<ResetPasswordModel> call, Throwable t) {
 
             }
         });
         return  resetPassword;
     }
 
-    public MutableLiveData<SignIn> signIn(final  Map<String, RequestBody> signBody){
+    public MutableLiveData<SignInModel> signIn(final  Map<String, RequestBody> signBody){
         loginService = ServiceGenerator.createService(AuthenticationWebServices.class,"Hemedi.manyinja@neymonict.com","123456");
-        loginService.signIn(signBody).enqueue(new Callback<SignIn>() {
+        loginService.signIn(signBody).enqueue(new Callback<SignInModel>() {
             @Override
-            public void onResponse(Call<SignIn> call, Response<SignIn> response) {
-                if (response.isSuccessful()) {
-                    // user object available
-                } else {
-                    // error response, no access to resource?
-                }
+            public void onResponse(Call<SignInModel> call, Response<SignInModel> response) {
+                signIn.postValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<SignIn> call, Throwable t) {
+            public void onFailure(Call<SignInModel> call, Throwable t) {
 
             }
         });

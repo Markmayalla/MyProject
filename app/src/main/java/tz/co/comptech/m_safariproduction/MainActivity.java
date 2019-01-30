@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
             String backSms = "";
             assert signUp201 != null;
-            try {
-                otp_id = signUp201.get_id();
-            }catch (NullPointerException e){
-               // backSms = signUp201.getSms();
-            }
+
 
             TextView myText = (TextView)findViewById(R.id.m_safari_error_text);
             myText.setText(backSms);
