@@ -22,6 +22,11 @@ public class SharedPreferenceHelper {
     public void apply(){
         editor.apply();
     }
+
+    public void clear(){
+        editor.clear();
+        editor.apply();
+    }
     /**
      * Set a string shared preference
      * @param key - Key to set shared preference

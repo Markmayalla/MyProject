@@ -2,11 +2,11 @@ package tz.co.comptech.m_safariproduction.ResponseModel.auth;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SignIn extends SignInError{
+public class ErrorDataModel extends ErrorModel {
     @SerializedName("data")
-    private Data data;
+    private String data;
 
-    public Data getData() {
+    public String getData() {
         return data;
     }
 }

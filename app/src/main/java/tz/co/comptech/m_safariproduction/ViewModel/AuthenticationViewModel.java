@@ -6,36 +6,38 @@ import androidx.lifecycle.ViewModel;
 import java.util.Map;
 
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import tz.co.comptech.m_safariproduction.Repository.AuthenticationRepository;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpReset;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerification;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPassword;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignIn;
-import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpResetModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.OtpVerificationModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.ResetPasswordModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignInModel;
+import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201Model;
 
 public class AuthenticationViewModel extends ViewModel {
 
     private AuthenticationRepository authenticationRepository;
-    private MutableLiveData<SignUp201> signUp201;
-    private MutableLiveData<OtpReset> otpReset;
-    private MutableLiveData<OtpVerification> otpVerification;
-    private MutableLiveData<ResetPassword> resetPassword;
-    private MutableLiveData<SignIn> signIn;
+    private MutableLiveData<SignUp201Model> signUp201;
+    private MutableLiveData<OtpResetModel> otpReset;
+    private MutableLiveData<OtpVerificationModel> otpVerification;
+    private MutableLiveData<ResetPasswordModel> resetPassword;
+    private MutableLiveData<SignInModel> signIn;
+    private MutableLiveData<String> repos;
 
     public AuthenticationViewModel(){
         authenticationRepository = new AuthenticationRepository();
     }
 
 
-    public MutableLiveData<SignUp201> getSignUp201(final Map<String , RequestBody> signUpData) {
-        if(signUp201 == null){
-            signUp201 = new MutableLiveData<>();
+    public MutableLiveData<String> getSignUp201(final Map<String , RequestBody> signUpData) {
+        if(repos == null){
+            repos = new MutableLiveData<>();
         }
-        signUp201 = authenticationRepository.getSignUp(signUpData);
-        return signUp201;
+        repos = authenticationRepository.getSignUp(signUpData);
+        return repos;
     }
 
-    public  MutableLiveData<OtpReset> resendOtp(final Map<String , RequestBody> otpData){
+    public  MutableLiveData<OtpResetModel> resendOtp(final Map<String , RequestBody> otpData){
         if(otpReset == null){
             otpReset = new MutableLiveData<>();
         }
@@ -43,7 +45,7 @@ public class AuthenticationViewModel extends ViewModel {
         return otpReset;
     }
 
-    public MutableLiveData<OtpVerification>  verifyPhone(final  Map<String, RequestBody> otpData){
+    public MutableLiveData<OtpVerificationModel>  verifyPhone(final  Map<String, RequestBody> otpData){
         if(otpVerification == null){
             otpVerification = new MutableLiveData<>();
         }
@@ -51,7 +53,7 @@ public class AuthenticationViewModel extends ViewModel {
         return otpVerification;
     }
 
-    public MutableLiveData<ResetPassword> resetPassword(final  Map<String, RequestBody> passwordReset){
+    public MutableLiveData<ResetPasswordModel> resetPassword(final  Map<String, RequestBody> passwordReset){
         if(resetPassword == null){
             resetPassword = new MutableLiveData<>();
         }
@@ -59,7 +61,7 @@ public class AuthenticationViewModel extends ViewModel {
         return resetPassword;
     }
 
-    public MutableLiveData<SignIn> signIn(final Map<String, RequestBody> signBody){
+    public MutableLiveData<SignInModel> signIn(final Map<String, RequestBody> signBody){
         if(signIn == null){
             signIn = new MutableLiveData<>();
         }
@@ -67,7 +69,7 @@ public class AuthenticationViewModel extends ViewModel {
         return  signIn;
     }
 
-    public MutableLiveData<SignUp201> getSignUp201(){
+    public MutableLiveData<SignUp201Model> getSignUp201(){
         if(signUp201 == null){
             signUp201 = new MutableLiveData<>();
         }

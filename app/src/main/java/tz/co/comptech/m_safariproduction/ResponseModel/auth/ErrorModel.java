@@ -2,23 +2,23 @@ package tz.co.comptech.m_safariproduction.ResponseModel.auth;
 
 import com.google.gson.annotations.SerializedName;
 
-class SignInError {
-    @SerializedName("status")
-    private Boolean status;
+public class ErrorModel {
     @SerializedName("msg")
     private String sms;
+    @SerializedName("status")
+    private Boolean status;
     @SerializedName("code")
-    private Integer code;
-
-    public Boolean getStatus() {
-        return status;
-    }
+    private String code;
 
     public String getSms() {
         return sms;
     }
 
-    public Integer getCode() {
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public String getCode() {
         return code;
     }
 }

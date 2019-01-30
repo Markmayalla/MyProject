@@ -49,7 +49,7 @@ public class Authentication extends AppCompatActivity implements SignUp.OnSignUp
                 if (Objects.requireNonNull(signInData).getStatus()) {
                     setSignUp();
                 }else{
-                    Toast.makeText(getApplicationContext(),"Data " + signInData.getSms(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"DataModel " + signInData.getSms(), Toast.LENGTH_LONG).show();
                 }
             });
         }

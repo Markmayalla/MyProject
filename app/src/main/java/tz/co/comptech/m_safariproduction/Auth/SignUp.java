@@ -19,10 +19,10 @@ import tz.co.comptech.m_safariproduction.Helpers.FormHelper;
 import tz.co.comptech.m_safariproduction.R;
 
 public class SignUp extends Fragment implements View.OnClickListener {
-    EditText first_name, last_name, phone, password, email;
-    Button btnSignUp, btnSignIn;
-    Map<String, String> valueReturn;
-    Map<String, RequestBody> formData;
+    private EditText first_name, last_name, phone, password, email;
+    private Button btnSignUp, btnSignIn;
+    private Map<String, String> valueReturn;
+    private Map<String, RequestBody> formData;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

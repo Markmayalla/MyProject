@@ -2,7 +2,7 @@ package tz.co.comptech.m_safariproduction.ResponseModel.auth;
 
 import com.google.gson.annotations.SerializedName;
 
-public class OtpVerification {
+public class OtpVerificationModel {
     @SerializedName("customer_id")
     private String customer_id;
 

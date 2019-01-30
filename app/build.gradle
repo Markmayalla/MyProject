@@ -75,6 +75,7 @@ dependencies {
     /*
     Utilities & Accessories
      */
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     //Step View
     implementation 'com.shuhart.stepview:stepview:1.4.0'
