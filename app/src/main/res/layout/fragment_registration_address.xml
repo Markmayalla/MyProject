@@ -55,6 +55,18 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/error_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Snackbar"
+                        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/onPrimary"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        android:text="OTP verification message has been sent. Enter the OTP pin bellow."/>
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Select Country"
@@ -62,6 +74,7 @@
                         android:textSize="12sp" />
 
                     <Spinner
+                        android:id="@+id/country"
                         style="@style/Widget.AppCompat.Spinner.Underlined"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -72,12 +85,14 @@
                         android:layout_height="wrap_content">
 
                         <EditText
+                            android:id="@+id/region"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Regions" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
+                        android:id="@+id/next_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"

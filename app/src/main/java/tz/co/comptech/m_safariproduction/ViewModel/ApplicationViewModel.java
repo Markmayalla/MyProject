@@ -11,7 +11,7 @@ public class ApplicationViewModel extends ViewModel {
     private MutableLiveData<String> repos;
     private ApiRepository apiRepository;
 
-    ApplicationViewModel(){
+    public ApplicationViewModel(){
         apiRepository = new ApiRepository();
     }
 

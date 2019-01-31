@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.shuhart.stepview.StepView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,13 +36,17 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     Map<String, RequestBody> formData;
     EditText inputTextNewPassword,inputTextConfirmPassword;
     Button buttonResetPassword;
+    TextView header_title, header_subtitle;
     ApplicationViewModel applicationViewModel;
+    StepView stepView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_auth_reset_password);
+        setContentView(R.layout.fragment_password_config);
 
+        stepView = findViewById(R.id.step_view);
+        stepView.go(3,true);
         formData = new HashMap<>();
         applicationViewModel = ViewModelProviders.of(this).get(ApplicationViewModel.class);
         inputTextNewPassword = findViewById(R.id.fragment_auth_reset_password_new_password);
@@ -48,6 +54,11 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         buttonResetPassword = findViewById(R.id.fragment_auth_reset_password_button);
 
         buttonResetPassword.setOnClickListener(this);
+
+        header_title = findViewById(R.id.header_title);
+        header_subtitle = findViewById(R.id.header_subtitle);
+        header_title.setText("Register");
+        header_subtitle.setText("Password Configuration");
     }
 
     @Override

@@ -20,7 +20,7 @@ public class ResetPassword extends Fragment implements  View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View resetPasswordView = inflater.inflate(R.layout.fragment_auth_reset_password,container,false);
+        View resetPasswordView = inflater.inflate(R.layout.fragment_password_config,container,false);
 
         return resetPasswordView;
     }

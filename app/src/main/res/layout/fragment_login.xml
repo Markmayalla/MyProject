@@ -41,12 +41,23 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/sign_m_safari_error_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Snackbar"
+                        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/onPrimary"
+                        android:padding="10dp"
+                        android:text="OTP verification message has been sent. Enter the OTP pin bellow."/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true">
                         <EditText
+                            android:id="@+id/fragment_auth_signin_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Phone"/>
@@ -58,6 +69,7 @@
                         app:passwordToggleEnabled="true">
 
                         <EditText
+                            android:id="@+id/fragment_auth_signin_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Password"
@@ -72,6 +84,7 @@
                         android:gravity="right"
                         android:orientation="horizontal">
                         <Button
+                            android:id="@+id/fragment_auth_signup_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
@@ -79,6 +92,7 @@
                             style="@style/btn_outlined"
                             android:text="Register" />
                         <Button
+                            android:id="@+id/fragment_auth_signin_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
@@ -93,6 +107,7 @@
                         android:background="@color/colorPrimary"/>
 
                     <Button
+                        android:id="@+id/fragment_auth_signin_forget_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"

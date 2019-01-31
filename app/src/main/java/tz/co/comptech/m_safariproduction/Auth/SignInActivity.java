@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.resources.TextAppearance;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -33,7 +34,7 @@ import tz.co.comptech.m_safariproduction.ViewModel.AuthenticationViewModel;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
     EditText phone, password;
-    TextView errorText;
+    TextView errorText, header_title, header_subtitle;
     Button btnSignIn, forgetPassword, btnSignUp;
     Map<String, String> valueReturn;
     Map<String, RequestBody> formData;
@@ -43,7 +44,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_auth_signin);
+        setContentView(R.layout.fragment_login);
 
         gson = new Gson();
         valueReturn = new HashMap<>();
@@ -56,7 +57,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         password = findViewById(R.id.fragment_auth_signin_password);
         btnSignIn = findViewById(R.id.fragment_auth_signin_button);
         btnSignUp = findViewById(R.id.fragment_auth_signup_button);
+        header_title = findViewById(R.id.header_title);
+        header_subtitle = findViewById(R.id.header_subtitle);
+        header_title.setText("Login");
+        header_title.setTextSize(24);
+        header_subtitle.setText("Any Challenges ? we are here for you 24/7 365. \nCall us through: +255 (0) 654 303 353. \n" +
+                "Msafari is for you, buy your tickets effortlessly :)");
+        header_subtitle.setTextSize(10);
 
+        errorText.setVisibility(View.GONE);
         phone.setText("+255685639653");
         password.setText("1234567890");
         forgetPassword = findViewById(R.id.fragment_auth_signin_forget_password);
@@ -125,6 +134,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     finish();
                 }else if(StringHelper.compare(signIn,"401")){
                     ErrorDataModel errorDataModel = gson.fromJson(signIn,ErrorDataModel.class);
+                    errorText.setVisibility(View.VISIBLE);
                     ErrorSms.setErrorSms(errorText,errorDataModel.getSms());
                 }
             });
@@ -134,13 +144,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         formData.put(FormValues.PHONE_NO, FormHelper.createPartFormString(ViewGutter.getString(phone)));
         authView.postDataToServer(Authentication.request_pass_reset_otp,formData).observe(this, responseBody -> {
             Gson gson = new Gson();
-            if(StringHelper.getCode(responseBody).equals("400")){
+            if(StringHelper.getCode(responseBody).equals("401")){
                 ErrorDataModel errorDataModel = gson.fromJson(responseBody,ErrorDataModel.class);
+                errorText.setVisibility(View.VISIBLE);
                 ErrorSms.setErrorSms(errorText,errorDataModel.getSms());
             }
 
             if(StringHelper.getCode(responseBody).equals("201")){
                 SignUp201Model success = gson.fromJson(responseBody,SignUp201Model.class);
+                errorText.setVisibility(View.VISIBLE);
                 ErrorSms.setErrorSms(errorText,success.getSms());
                 SharedPreferenceHelper sharedPreferenceHelper = new SharedPreferenceHelper(getApplicationContext(), SharedValues.SHARED_REGISTER_DATA);
                 sharedPreferenceHelper.editor();

@@ -53,6 +53,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/response"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.Snackbar"
@@ -81,12 +82,14 @@
                         android:gravity="right"
                         android:orientation="horizontal">
                         <Button
+                            android:id="@+id/otp_resend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/btn_text"
                             android:text="Resend"/>
 
                         <Button
+                            android:id="@+id/otp_validate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/btn_outlined"

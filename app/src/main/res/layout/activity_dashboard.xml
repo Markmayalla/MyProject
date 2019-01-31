@@ -5,19 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_margin="20dp"
     tools:context=".Auth.Dashboard">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:id="@+id/data_login_name"
-        android:textSize="40dp"/>
+        style="@style/Widget.MaterialComponents.Snackbar"
+        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/onPrimary"
+        android:padding="10dp"
+        android:text="Phase one (Authentication) Complete."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Snackbar"
+        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/onPrimary"
+        android:padding="10dp"
+        android:text="Phase two About to Start."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Snackbar"
+        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/onPrimary"
+        android:padding="10dp"
+        android:text="Vigorous Evaluation is expected."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Snackbar"
+        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:background="@color/colorAccent"
+        android:textColor="@color/onPrimary"
+        android:padding="10dp"
+        android:text="Is the Authentication Phase user Friendly ?"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Snackbar"
+        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:background="@color/colorAccent"
+        android:textColor="@color/onPrimary"
+        android:padding="10dp"
+        android:text="Your Feedbacks and Comments are Higly valuable."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Snackbar"
+        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/onPrimary"
+        android:padding="10dp"
+        android:text="Regards, Developers..."/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log Out"
+        android:layout_margin="10dp"
+        android:layout_gravity="right"
         android:onClick="logOut"/>
 </LinearLayout>

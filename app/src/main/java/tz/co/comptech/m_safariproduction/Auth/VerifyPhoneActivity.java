@@ -22,14 +22,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
+import com.shuhart.stepview.StepView;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class VerifyPhoneActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText otp_secrete;
+    OtpView otp_secrete;
+    StepView stepView;
+    TextView response, header_title, header_subtitle;
     Button resendOTP, verifyOTP;
 
     Map<String, String> valueReturn;
@@ -42,15 +48,29 @@ public class VerifyPhoneActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_auth_verify_phone);
-        otp_secrete = (EditText)findViewById(R.id.fragment_auth_verify_phone_otp);
+        setContentView(R.layout.fragment_otp_verification);
+        otp_secrete = findViewById(R.id.otp_view);
 
+        stepView = findViewById(R.id.step_view);
         formData = new HashMap<>();
         sharedPreferenceHelper = new SharedPreferenceHelper(this, SharedValues.SHARED_REGISTER_DATA);
         authView = ViewModelProviders.of(this).get(ApplicationViewModel.class);
-        resendOTP = findViewById(R.id.fragment_auth_verify_phone_resend);
-        verifyOTP = findViewById(R.id.fragment_auth_verify_phone_verify);
+        resendOTP = findViewById(R.id.otp_resend);
+        verifyOTP = findViewById(R.id.otp_validate);
+        response = findViewById(R.id.response);
 
+        header_title = findViewById(R.id.header_title);
+        header_subtitle = findViewById(R.id.header_subtitle);
+        header_title.setText("Register");
+        header_subtitle.setText("OTP Verification");
+
+        stepView.go(2,true);
+        otp_secrete.setOtpCompletionListener(new OnOtpCompletionListener() {
+            @Override
+            public void onOtpCompleted(String s) {
+                funVerifyOtp();
+            }
+        });
         resendOTP.setOnClickListener(this);
         verifyOTP.setOnClickListener(this);
     }
@@ -58,10 +78,10 @@ public class VerifyPhoneActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.fragment_auth_verify_phone_verify:
+            case R.id.otp_validate:
                 funVerifyOtp();
                 break;
-            case R.id.fragment_auth_verify_phone_resend:
+            case R.id.otp_resend:
                 funResendOtp();
                 break;
         }
@@ -70,18 +90,22 @@ public class VerifyPhoneActivity extends AppCompatActivity implements View.OnCli
     private void funResendOtp() {
         formData.put(FormValues.CUSTOMER_ID, FormHelper.createPartFormString(sharedPreferenceHelper.getString(SharedValues.OTP_CUSTOMER_ID,"")));
         authView.postDataToServer(Authentication.resend_otp, formData).observe(VerifyPhoneActivity.this, otpVerification -> {
-            if(StringHelper.compare(otpVerification,"200")){
+            if(StringHelper.compare(otpVerification,"201")){
                 Log.e("d","success " + otpVerification);
-                otp_secrete.setText("6666");
-                finish();
+
+                response.setText("SMS Service is Down, Kindly use 6666");
             }else if(StringHelper.compare(otpVerification,"400")){
                 Log.e("d","error");
-                otp_secrete.setText("Error");
+                response.setText("Something wen't wrong");
             }
         });
     }
 
     private void funVerifyOtp() {
+        if (otp_secrete.getText().toString().isEmpty()) {
+            response.setText("OTP Secret is Required");
+            return;
+        }
         String service = sharedPreferenceHelper.getString(SharedValues.OTP_SERVICE,"");
         formData.put(FormValues.OTP_MOBILE, FormHelper.createPartFormString(sharedPreferenceHelper.getString(SharedValues.OTP_MOBILE,"")));
         formData.put(FormValues.OTP_SERVICE, FormHelper.createPartFormString(service));
@@ -101,11 +125,22 @@ public class VerifyPhoneActivity extends AppCompatActivity implements View.OnCli
 
                     startActivity(new Intent(VerifyPhoneActivity.this, ResetPasswordActivity.class));
                 }else if(ServiceNameList.SERVICE_REGISTER.equals(service)){
-                    startActivity(new Intent(VerifyPhoneActivity.this, Dashboard.class));
+                    Gson gson = new Gson();
+                    OnPasswordRestModel onPasswordRestModel = gson.fromJson(otpVerification, OnPasswordRestModel.class);
+                    sharedPreferenceHelper = new SharedPreferenceHelper(VerifyPhoneActivity.this, SharedValues.SHARED_RESET_DATA);
+                    sharedPreferenceHelper.editor();
+                    sharedPreferenceHelper.setString(SharedValues.CUSTOMER_ID,onPasswordRestModel.getDataModel().getCustomer_id());
+                    sharedPreferenceHelper.setString(SharedValues.KEY,onPasswordRestModel.getDataModel().getKey());
+                    sharedPreferenceHelper.setBoolean(SharedValues.VERIFICATION,onPasswordRestModel.getDataModel().getVerification());
+                    sharedPreferenceHelper.apply();
+
+                    startActivity(new Intent(VerifyPhoneActivity.this, ResetPasswordActivity.class));
                 }
                 finish();
             }else if(StringHelper.compare(otpVerification,"400")){
                 Log.e("d","error");
+            } else {
+                response.setText("Invalid OTP, Please enter the digits carefully or resend OTP");
             }
         });
     }

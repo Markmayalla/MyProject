@@ -1,6 +1,7 @@
     package tz.co.comptech.m_safariproduction.Auth;
 
     import androidx.annotation.Nullable;
+    import androidx.appcompat.widget.AppCompatSpinner;
     import androidx.lifecycle.ViewModelProviders;
 
     import android.app.PendingIntent;
@@ -18,6 +19,9 @@
     import android.view.View;
     import android.widget.Button;
     import android.widget.EditText;
+    import android.widget.RadioButton;
+    import android.widget.RadioGroup;
+    import android.widget.Spinner;
     import android.widget.TextView;
     import android.widget.Toast;
 
@@ -31,6 +35,7 @@
     import com.google.android.gms.common.api.Status;
     import com.google.android.gms.tasks.Task;
     import com.google.gson.Gson;
+    import com.shuhart.stepview.StepView;
 
     import java.io.IOException;
     import java.util.HashMap;
@@ -54,11 +59,14 @@
 
     public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
         private static final int RESOLVE_HINT = 567;
-        private EditText first_name, last_name, phone, password, email;
-        private TextView errorText;
+        private EditText first_name, last_name, phone, region;
+        private Spinner county;
+        private TextView errorText, header_title, header_subtitle;
         private Button btnSignUp, btnSignIn;
+        private RadioGroup radioGroup;
         private Map<String, String> valueReturn;
         private Map<String, RequestBody> formData;
+        private StepView stepView;
 
         ApplicationViewModel authView;
         private AppCompatButton buttonConfirm;
@@ -68,36 +76,71 @@
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.fragment_auth_signup);
+            setContentView(R.layout.fragment_registration);
 
             formData = new HashMap<>();
-            first_name = findViewById(R.id.fragment_auth_signup_first_name);
-            errorText = findViewById(R.id.m_safari_error_text);
-            last_name = findViewById(R.id.fragment_auth_signup_last_name);
-            phone = findViewById(R.id.fragment_auth_signup_phone_no);
-            password = findViewById(R.id.fragment_auth_signup_password);
-            email = findViewById(R.id.fragment_auth_signup_email);
+            first_name = findViewById(R.id.first_name);
+            last_name = findViewById(R.id.last_name);
+            phone = findViewById(R.id.phone);
+            radioGroup = findViewById(R.id.gender);
+            stepView = findViewById(R.id.step_view);
 
-            btnSignUp = findViewById(R.id.fragment_auth_signup_signup);
-            btnSignIn = findViewById(R.id.fragment_auth_signup_signin);
+            btnSignUp = findViewById(R.id.next_basic_info);
+            btnSignIn = findViewById(R.id.login);
 
-            btnSignIn.setOnClickListener(this);
             btnSignUp.setOnClickListener(this);
+            btnSignIn.setOnClickListener(this);
             requestHint();
 
             authView = ViewModelProviders.of(this).get(ApplicationViewModel.class);
+
+            header_title = findViewById(R.id.header_title);
+            header_subtitle = findViewById(R.id.header_subtitle);
+            header_title.setText("Register");
+            header_subtitle.setText("Basic Information");
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.fragment_auth_signup_signup:
-                        funSignUp();
+                case R.id.next_basic_info:
+                    next_basic();
                     break;
-                case R.id.fragment_auth_signup_signin:
-                        funSignIn();
+                case R.id.next_address:
+                     funSignUp();
+                    break;
+                case R.id.login:
+                    funSignIn();
                     break;
             }
+        }
+
+        private void next_basic() {
+            if(first_name.getText().toString().isEmpty()) {
+                first_name.setError("First Name Required");
+                return;
+            }
+
+            if(last_name.getText().toString().isEmpty()) {
+                last_name.setError("First Name Required");
+                return;
+            }
+            if(phone.getText().toString().isEmpty()) {
+                phone.setError("First Name Required");
+                return;
+            }
+            final String gender = ((RadioButton)findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
+            formData.put(FormValues.FIRST_NAME, FormHelper.createPartFormString(ViewGutter.getString(first_name)));
+            formData.put(FormValues.LAST_NAME, FormHelper.createPartFormString(ViewGutter.getString(last_name)));
+            formData.put(FormValues.PHONE_NO, FormHelper.createPartFormString(ViewGutter.getString(phone)));
+            formData.put(FormValues.GENDER, FormHelper.createPartFormString(gender));
+            setContentView(R.layout.fragment_registration_address);
+            header_subtitle.setText("Address Information");
+            errorText = findViewById(R.id.error_text);
+            stepView = findViewById(R.id.step_view);
+            stepView.go(1,true);
+            btnSignIn = findViewById(R.id.next_address);
+            btnSignIn.setOnClickListener(this);
         }
 
         private void funSignIn() {
@@ -105,11 +148,16 @@
         }
 
         private void funSignUp() {
-            formData.put(FormValues.FIRST_NAME, FormHelper.createPartFormString(ViewGutter.getString(first_name)));
-            formData.put(FormValues.LAST_NAME, FormHelper.createPartFormString(ViewGutter.getString(last_name)));
-            formData.put(FormValues.PHONE_NO, FormHelper.createPartFormString(ViewGutter.getString(phone)));
-            formData.put(FormValues.PASSWORD, FormHelper.createPartFormString(ViewGutter.getString(password)));
-            formData.put(FormValues.EMAIL, FormHelper.createPartFormString(ViewGutter.getString(email)));
+            county = findViewById(R.id.country);
+            region = findViewById(R.id.region);
+
+            if (region.getText().toString().isEmpty()) {
+                region.setError("Region Required");
+                return;
+            }
+
+            formData.put(FormValues.COUNTRY, FormHelper.createPartFormString(county.getSelectedItem().toString()));
+            formData.put(FormValues.REGION, FormHelper.createPartFormString(ViewGutter.getString(region)));
 
             authView.postDataToServer(Authentication.register_user,formData).observe(this, responseBody -> {
                 Gson gson = new Gson();
