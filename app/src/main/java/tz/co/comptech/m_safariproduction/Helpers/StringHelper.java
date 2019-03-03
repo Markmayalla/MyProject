@@ -6,7 +6,17 @@ public class StringHelper {
     public static String getCode(String responseBody){
         Log.e("worker",responseBody);
         int index = responseBody.indexOf("code") + 7;
-        return responseBody.substring(index,index + 3);
+        String data = responseBody.substring(index,index + 3);
+        Log.e("finaly_block", "dd" + data);
+        return data;
+    }
+
+    public static String getCode2(String responseBody){
+        Log.e("worker",responseBody);
+        int index = responseBody.indexOf("code") + 6;
+        String data = responseBody.substring(index,index + 3);
+        Log.e("finaly_block", "dd" + data);
+        return data;
     }
 
     public static Boolean compare(String response, String code){

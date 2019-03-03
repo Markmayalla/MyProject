@@ -1,5 +1,6 @@
 package tz.co.comptech.m_safariproduction.Repository;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.io.IOException;
@@ -13,19 +14,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tz.co.comptech.m_safariproduction.Api.ApiWebInterface;
 import tz.co.comptech.m_safariproduction.Api.AppConnection;
+import tz.co.comptech.m_safariproduction.Helpers.SharedPreferenceHelper;
+import tz.co.comptech.m_safariproduction.Helpers.SharedValues;
 
 public class ApiRepository {
     private ApiWebInterface webInterface;
     private MutableLiveData<String> responseBody;
-
-    public ApiRepository() {
+    private String token;
+    private Context context;
+    public ApiRepository(Context context) {
         webInterface = AppConnection.getClient().create(ApiWebInterface.class);
         responseBody = new MutableLiveData<>();
+        SharedPreferenceHelper helper = new SharedPreferenceHelper(context, SharedValues.SHARED_LOGIN_DATA);
+        token = helper.getString(SharedValues.TOKEN, "");
     }
 
     public MutableLiveData<String> postDataToServer(final String url, final Map<String, RequestBody> signUpData) {
 
-        webInterface.postDataToServer(url, signUpData).enqueue(new Callback<ResponseBody>() {
+        webInterface.postDataToServer(url, signUpData, token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {
@@ -46,8 +52,8 @@ public class ApiRepository {
         return responseBody;
     }
 
-    public MutableLiveData<String> getDataFromServer(final String url, final Map<String, RequestBody> signUpData) {
-        webInterface.getDataFroServer(url, signUpData).enqueue(new Callback<ResponseBody>() {
+    public MutableLiveData<String> getDataFromServer(final String url) {
+        webInterface.getDataFroServer(url, token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {
@@ -69,8 +75,8 @@ public class ApiRepository {
     }
 
 
-    public MutableLiveData<String> deleteDataFromServer(final String url, final Map<String, RequestBody> signUpData) {
-        webInterface.deleteDataFroServer(url, signUpData).enqueue(new Callback<ResponseBody>() {
+    public MutableLiveData<String> deleteDataFromServer(final String url) {
+        webInterface.deleteDataFroServer(url, token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {
@@ -92,7 +98,7 @@ public class ApiRepository {
     }
 
     public MutableLiveData<String> putDataFroServer(final String url, final Map<String, RequestBody> signUpData) {
-        webInterface.putDataFroServer(url, signUpData).enqueue(new Callback<ResponseBody>() {
+        webInterface.putDataFroServer(url, signUpData, token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {

@@ -16,22 +16,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".Auth.VerifyPhoneActivity"
-            tools:ignore="InnerclassSeparator" />
-        <activity android:name=".Auth.ResetPasswordActivity"
-            tools:ignore="InnerclassSeparator" />
-        <activity android:name=".Auth.SignInActivity" tools:ignore="InnerclassSeparator">
+        <activity android:name=".StartAppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Auth.Dashboard" tools:ignore="InnerclassSeparator" />
-        <activity android:name=".Auth.RegisterActivity" tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Auth.VerifyPhoneActivity"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Auth.ResetPasswordActivity"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Auth.SignInActivity"
+            tools:ignore="InnerclassSeparator">
+
+        </activity>
+        <activity
+            android:name=".Auth.Dashboard"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Auth.RegisterActivity"
+            tools:ignore="InnerclassSeparator" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Register" />
-        <activity android:name=".Auth.Authentication" tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Auth.Authentication"
+            tools:ignore="InnerclassSeparator" />
     </application>
 
 </manifest>
