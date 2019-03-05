@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import tz.co.comptech.m_safariproduction.Api.SearchApi;
-import tz.co.comptech.m_safariproduction.Auth.Dashboard;
 import tz.co.comptech.m_safariproduction.Auth.RegisterActivity;
 import tz.co.comptech.m_safariproduction.Helpers.SharedPreferenceHelper;
 import tz.co.comptech.m_safariproduction.Helpers.SharedValues;
@@ -15,6 +14,7 @@ import tz.co.comptech.m_safariproduction.ResponseModel.search.CenterDataModel;
 import tz.co.comptech.m_safariproduction.Room.Model.Region;
 import tz.co.comptech.m_safariproduction.Room.Model.RegionPoints;
 import tz.co.comptech.m_safariproduction.Room.ViewModel.RoomViewModel;
+import tz.co.comptech.m_safariproduction.Search.Dashboard;
 import tz.co.comptech.m_safariproduction.ViewModel.ApplicationViewModel;
 
 import android.content.Intent;
@@ -77,11 +77,11 @@ public class StartAppActivity extends AppCompatActivity {
                                     points.get(j).toString(),
                                     centerDataModel.getRegion_id()
                             ));
-                            Log.e("finaly_block", "data " + centerDataModels.get(i).getRegionName() + " points " + points.get(j).toString());
+                            //Log.e("finaly_block", "data " + centerDataModels.get(i).getRegionName() + " points " + points.get(j).toString());
                         }
                     }
                 }
-                Log.e("finaly_block", "Reached");
+                //Log.e("finaly_block", "Reached");
             });
 
         }catch (IllegalArgumentException  e) {

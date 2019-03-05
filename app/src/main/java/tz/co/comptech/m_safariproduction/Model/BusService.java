@@ -7,20 +7,15 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import com.google.gson.annotations.SerializedName;
 
 public class BusService {
+ @SerializedName("service_name")
  private String service_name;
+ @SerializedName("code")
  private String code;
+ @SerializedName("img")
  private String img;
-
-
-
-
-
-
-
-
- // Getter Methods 
 
  public String getService_name() {
   return service_name;
@@ -32,19 +27,5 @@ public class BusService {
 
  public String getImg() {
   return img;
- }
-
- // Setter Methods 
-
- public void setService_name(String service_name) {
-  this.service_name = service_name;
- }
-
- public void setCode(String code) {
-  this.code = code;
- }
-
- public void setImg(String img) {
-  this.img = img;
  }
 }

@@ -1,6 +1,8 @@
 package tz.co.comptech.m_safariproduction.Auth;
 
 import androidx.lifecycle.ViewModelProviders;
+
+import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import tz.co.comptech.m_safariproduction.R;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.ErrorDataModel;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignInModel;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.SignUp201Model;
+import tz.co.comptech.m_safariproduction.Search.Dashboard;
 import tz.co.comptech.m_safariproduction.ViewModel.ApplicationViewModel;
 import tz.co.comptech.m_safariproduction.ViewModel.AuthenticationViewModel;
 
@@ -101,43 +104,49 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             formData.put(FormValues.PHONE_NO, FormHelper.createPartFormString(ViewGutter.getString(phone)));
             formData.put(FormValues.PASSWORD, FormHelper.createPartFormString(ViewGutter.getString(password)));
 
-            authView.postDataToServer(Authentication.login_user,formData).observe(this, signIn -> {
-                if(StringHelper.compare(signIn,"200")){
-                    Log.e("d","success" + signIn);
-                    SignInModel signInModel = gson.fromJson(signIn, SignInModel.class);
-                    sharedPreferenceHelper = new SharedPreferenceHelper(SignInActivity.this, SharedValues.SHARED_REGISTER_DATA);
-                    sharedPreferenceHelper.editor();
-                    sharedPreferenceHelper.clear();
+            authView.postDataToServer(Authentication.login_user,formData).observe(this, signIn -> updatedSignIn(signIn, SignInActivity.this));
+    }
 
-                    sharedPreferenceHelper = new SharedPreferenceHelper(SignInActivity.this, SharedValues.SHARED_LOGIN_DATA);
-                    sharedPreferenceHelper.editor();
-                        sharedPreferenceHelper.setString(SharedValues.FIRST_NAME,signInModel.getData().getCustomer().getFirst_name());
-                        sharedPreferenceHelper.setString(SharedValues.MIDDLE_NAME,signInModel.getData().getCustomer().getMiddle_name());
-                        sharedPreferenceHelper.setString(SharedValues.LAST_NAME,signInModel.getData().getCustomer().getLast_name());
-                        sharedPreferenceHelper.setString(SharedValues.GENDER,signInModel.getData().getCustomer().getGender());
-                        sharedPreferenceHelper.setString(SharedValues.ADDRESS,signInModel.getData().getCustomer().getAddress());
-                        sharedPreferenceHelper.setString(SharedValues.ROLE,signInModel.getData().getCustomer().getRole());
-                        sharedPreferenceHelper.setBoolean(SharedValues.PHONE_VERIFIED,signInModel.getData().getCustomer().getPhone_verified());
-                        sharedPreferenceHelper.setBoolean(SharedValues.BLOCKED,signInModel.getData().getCustomer().getBlocked());
-                        sharedPreferenceHelper.setString(SharedValues.PROFILE_PIC,signInModel.getData().getCustomer().getProfile_pic());
-                        sharedPreferenceHelper.setString(SharedValues.REGION,signInModel.getData().getCustomer().getRegion());
-                        sharedPreferenceHelper.setString(SharedValues.COUNTRY,signInModel.getData().getCustomer().getCountry());
-                        sharedPreferenceHelper.setString(SharedValues.CREATED_DATE,signInModel.getData().getCustomer().getCreated_date());
-                        sharedPreferenceHelper.setString(SharedValues.UPDATED_DATE,signInModel.getData().getCustomer().getUpdated_date());
-                        sharedPreferenceHelper.setString(SharedValues._ID,signInModel.getData().getCustomer().get_id());
-                        sharedPreferenceHelper.setString(SharedValues.PHONE_NO,signInModel.getData().getCustomer().getPhone_no());
-                        sharedPreferenceHelper.setString(SharedValues.EMAIL,signInModel.getData().getCustomer().getEmail());
-                        sharedPreferenceHelper.setString(SharedValues.TOKEN,signInModel.getData().getToken());
-                    sharedPreferenceHelper.apply();
+    private void updatedSignIn(String signIn, Context signInActivity) {
+        {
+            if(StringHelper.compare(signIn,"200")){
+                //Log.e("d","success" + signIn);
+                SignInModel signInModel = gson.fromJson(signIn, SignInModel.class);
+                sharedPreferenceHelper = new SharedPreferenceHelper(signInActivity, SharedValues.SHARED_REGISTER_DATA);
+                sharedPreferenceHelper.editor();
+                sharedPreferenceHelper.clear();
 
-                    startActivity(new Intent(SignInActivity.this,Dashboard.class));
-                    finish();
-                }else if(StringHelper.compare(signIn,"401")){
-                    ErrorDataModel errorDataModel = gson.fromJson(signIn,ErrorDataModel.class);
-                    errorText.setVisibility(View.VISIBLE);
-                    ErrorSms.setErrorSms(errorText,errorDataModel.getSms());
-                }
-            });
+                sharedPreferenceHelper = new SharedPreferenceHelper(signInActivity, SharedValues.SHARED_LOGIN_DATA);
+                sharedPreferenceHelper.editor();
+                sharedPreferenceHelper.setString(SharedValues.FIRST_NAME,signInModel.getData().getCustomer().getFirst_name());
+                sharedPreferenceHelper.setString(SharedValues.MIDDLE_NAME,signInModel.getData().getCustomer().getMiddle_name());
+                sharedPreferenceHelper.setString(SharedValues.LAST_NAME,signInModel.getData().getCustomer().getLast_name());
+                sharedPreferenceHelper.setString(SharedValues.GENDER,signInModel.getData().getCustomer().getGender());
+                sharedPreferenceHelper.setString(SharedValues.ADDRESS,signInModel.getData().getCustomer().getAddress());
+                sharedPreferenceHelper.setString(SharedValues.ROLE,signInModel.getData().getCustomer().getRole());
+                sharedPreferenceHelper.setBoolean(SharedValues.PHONE_VERIFIED,signInModel.getData().getCustomer().getPhone_verified());
+                sharedPreferenceHelper.setBoolean(SharedValues.BLOCKED,signInModel.getData().getCustomer().getBlocked());
+                sharedPreferenceHelper.setString(SharedValues.PROFILE_PIC,signInModel.getData().getCustomer().getProfile_pic());
+                sharedPreferenceHelper.setString(SharedValues.REGION,signInModel.getData().getCustomer().getRegion());
+                sharedPreferenceHelper.setString(SharedValues.COUNTRY,signInModel.getData().getCustomer().getCountry());
+                sharedPreferenceHelper.setString(SharedValues.CREATED_DATE,signInModel.getData().getCustomer().getCreated_date());
+                sharedPreferenceHelper.setString(SharedValues.UPDATED_DATE,signInModel.getData().getCustomer().getUpdated_date());
+                sharedPreferenceHelper.setString(SharedValues._ID,signInModel.getData().getCustomer().get_id());
+                sharedPreferenceHelper.setString(SharedValues.PHONE_NO,signInModel.getData().getCustomer().getPhone_no());
+                sharedPreferenceHelper.setString(SharedValues.EMAIL,signInModel.getData().getCustomer().getEmail());
+                sharedPreferenceHelper.setString(SharedValues.TOKEN,signInModel.getData().getToken());
+                sharedPreferenceHelper.apply();
+
+                startActivity(new Intent(SignInActivity.this, Dashboard.class));
+
+                String FirstName = new SharedPreferenceHelper(signInActivity, SharedValues.SHARED_LOGIN_DATA).getString(SharedValues.FIRST_NAME, "");
+                finish();
+            }else if(StringHelper.compare(signIn,"401")){
+                ErrorDataModel errorDataModel = gson.fromJson(signIn,ErrorDataModel.class);
+                //errorText.setVisibility(View.VISIBLE);
+                //ErrorSms.setErrorSms(errorText,errorDataModel.getSms());
+            }
+        }
     }
 
     private void funSignPassword() {

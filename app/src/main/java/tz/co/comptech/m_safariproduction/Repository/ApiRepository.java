@@ -25,8 +25,7 @@ public class ApiRepository {
     public ApiRepository(Context context) {
         webInterface = AppConnection.getClient().create(ApiWebInterface.class);
         responseBody = new MutableLiveData<>();
-        SharedPreferenceHelper helper = new SharedPreferenceHelper(context, SharedValues.SHARED_LOGIN_DATA);
-        token = helper.getString(SharedValues.TOKEN, "");
+        token = new SharedPreferenceHelper(context, SharedValues.SHARED_LOGIN_DATA).getString(SharedValues.TOKEN, "");
     }
 
     public MutableLiveData<String> postDataToServer(final String url, final Map<String, RequestBody> signUpData) {
@@ -34,7 +33,7 @@ public class ApiRepository {
         webInterface.postDataToServer(url, signUpData, token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.body() != null) {
+                if (response.body() != null && response.isSuccessful()) {
                     try {
                         responseBody.postValue(response.body().string());
                     } catch (IOException e) {

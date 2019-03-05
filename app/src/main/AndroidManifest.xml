@@ -27,6 +27,9 @@
             android:name=".Auth.VerifyPhoneActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
+            android:name=".Search.Dashboard"
+            tools:ignore="InnerclassSeparator" />
+        <activity
             android:name=".Auth.ResetPasswordActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
@@ -34,9 +37,6 @@
             tools:ignore="InnerclassSeparator">
 
         </activity>
-        <activity
-            android:name=".Auth.Dashboard"
-            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Auth.RegisterActivity"
             tools:ignore="InnerclassSeparator" />

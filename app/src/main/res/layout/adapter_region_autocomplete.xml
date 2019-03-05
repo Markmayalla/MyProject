@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/adapter_region_autocomplete_image"
+        android:src="@drawable/common_google_signin_btn_icon_dark"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:padding="3dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:id="@+id/adapter_region_autocomplete_name"/>
+</LinearLayout>
