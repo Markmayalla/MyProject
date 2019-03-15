@@ -31,9 +31,7 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Auth.SignInActivity"
-            tools:ignore="InnerclassSeparator">
-
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".Auth.Dashboard"
             tools:ignore="InnerclassSeparator" />

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import tz.co.comptech.m_safariproduction.ResponseModel.auth.ErrorModel;
 
 public class CenterDataModel {
+
     @SerializedName("name")
     private String regionName;
 

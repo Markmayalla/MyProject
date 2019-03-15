@@ -1,37 +1,62 @@
 package tz.co.comptech.m_safariproduction.Model;/*
-*
-* m-safari App
-* By GrandMaster
-* 2018 Nov
-*
-*/
+ *
+ * m-safari App
+ * By GrandMaster
+ * 2018 Nov
+ *
+ */
 
 
 import java.util.ArrayList;
 
-public class BusCenter{
- private String region;
- private String name;
- ArrayList< String > local_points = new ArrayList < String > ();
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
+public class BusCenter {
 
- // Getter Methods 
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int id;
+    private String region;
+    private String name;
+    ArrayList<String> local_points;
 
- public String getRegion() {
-  return region;
- }
+    public ArrayList<String> getLocal_points() {
+        return local_points;
+    }
 
- public String getName() {
-  return name;
- }
+    public void setLocal_points(ArrayList<String> local_points) {
+        this.local_points = local_points;
+    }
 
- // Setter Methods 
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
 
- public void setRegion(String region) {
-  this.region = region;
- }
+    @NonNull
+    public int getId() {
+        return id;
+    }
 
- public void setName(String name) {
-  this.name = name;
- }
+    // Getter Methods
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Setter Methods
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

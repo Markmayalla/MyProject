@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/M-safariProduction.iml" filepath="$PROJECT_DIR$/M-safariProduction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Msafiri_HemediVersion.iml" filepath="$PROJECT_DIR$/Msafiri_HemediVersion.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

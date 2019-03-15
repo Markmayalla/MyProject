@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#000012</color>
     <color name="colorAccent">#f69520</color>
     <color name="colorAccentLight">#ffc655</color>
-    <color name="colorAccentDark">#bd6700</color>
+    <color name="colorAccentDark">#BD6700</color>
     <color name="onPrimary">#ffffff</color>
     <color name="onAccent">#000000</color>
     <color name="disabled">#1E000000</color>

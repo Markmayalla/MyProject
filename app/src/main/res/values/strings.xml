@@ -19,4 +19,5 @@
         <item>OTP</item>
         <item>Password</item>
     </string-array>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
