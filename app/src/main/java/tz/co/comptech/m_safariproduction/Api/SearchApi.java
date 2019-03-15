@@ -11,5 +11,6 @@ package tz.co.comptech.m_safariproduction.Api;
 public class SearchApi extends AppConnection {
 
     public final static String BUS_CENTERS =  "bus_centers";
+    public final static String BUSES =  "buses";
     public final static String GET_SCHEDULLED_BUSES = "get_all_schedulled_buses";
 }

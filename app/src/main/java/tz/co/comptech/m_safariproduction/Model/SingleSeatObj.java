@@ -7,17 +7,17 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class SingleSeatObj {
+ @SerializedName("row")
  private float row;
+ @SerializedName("col")
  private float col;
+ @SerializedName("level")
  private float level;
+ @SerializedName("index")
  private float index;
-
-
-
-
-
-
 
 
  // Getter Methods 
@@ -38,21 +38,4 @@ public class SingleSeatObj {
   return index;
  }
 
- // Setter Methods 
-
- public void setRow(float row) {
-  this.row = row;
- }
-
- public void setCol(float col) {
-  this.col = col;
- }
-
- public void setLevel(float level) {
-  this.level = level;
- }
-
- public void setIndex(float index) {
-  this.index = index;
- }
 }

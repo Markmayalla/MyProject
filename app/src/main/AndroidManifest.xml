@@ -16,12 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".StartAppActivity">
+        <activity
+            android:name=".Search.SeatActivity"
+            android:label="@string/title_activity_seat"
+            android:theme="@style/AppMaterialTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".StartAppActivity">
+
         </activity>
         <activity
             android:name=".Auth.VerifyPhoneActivity"
@@ -34,9 +40,7 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Auth.SignInActivity"
-            tools:ignore="InnerclassSeparator">
-
-        </activity>
+            tools:ignore="InnerclassSeparator"></activity>
         <activity
             android:name=".Auth.RegisterActivity"
             tools:ignore="InnerclassSeparator" />

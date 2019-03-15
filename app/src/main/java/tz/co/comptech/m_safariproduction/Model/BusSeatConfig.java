@@ -7,54 +7,93 @@ package tz.co.comptech.m_safariproduction.Model;/*
 */
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class BusSeatConfig {
- private float no_rows;
- private float no_cols;
- private String cols_naming_type;
- private String rows_naming_type;
- ArrayList< SingleSeatObj > seats = new ArrayList < SingleSeatObj > ();
+    @SerializedName("flow_name")
+    private String flow_name;
 
+    @SerializedName("total_seats_per_flow")
+    private Integer total_seats_per_flow;
 
+    @SerializedName("no_rows")
+    private Integer no_rows;
 
+    @SerializedName("no_cols")
+    private Integer no_cols;
 
+    @SerializedName("cols_naming_type")
+    private String cols_naming_type;
 
+    @SerializedName("rows_naming_type")
+    private String rows_naming_type;
 
+    @SerializedName("blank_seats_simple_array")
+    private List<String> blank_seats_simple_array;
 
- // Getter Methods 
+    @SerializedName("blank_seats_obj_array")
+    private List<Blank_seats_obj_array> blank_seats_obj_array;
 
- public float getNo_rows() {
-  return no_rows;
- }
+    @SerializedName("supported_levels")
+    private List<Integer> supported_levels;
 
- public float getNo_cols() {
-  return no_cols;
- }
+    @SerializedName("has_multi_levels")
+    private Boolean has_multi_levels;
 
- public String getCols_naming_type() {
-  return cols_naming_type;
- }
+    @SerializedName("seats")
+    private List<Seat> seats;
 
- public String getRows_naming_type() {
-  return rows_naming_type;
- }
+    @SerializedName("_id")
+    private String _id;
 
- // Setter Methods 
+    public String getFlow_name() {
+        return flow_name;
+    }
 
- public void setNo_rows(float no_rows) {
-  this.no_rows = no_rows;
- }
+    public Integer getTotal_seats_per_flow() {
+        return total_seats_per_flow;
+    }
 
- public void setNo_cols(float no_cols) {
-  this.no_cols = no_cols;
- }
+    public Integer getNo_rows() {
+        return no_rows;
+    }
 
- public void setCols_naming_type(String cols_naming_type) {
-  this.cols_naming_type = cols_naming_type;
- }
+    public Integer getNo_cols() {
+        return no_cols;
+    }
 
- public void setRows_naming_type(String rows_naming_type) {
-  this.rows_naming_type = rows_naming_type;
- }
+    public String getCols_naming_type() {
+        return cols_naming_type;
+    }
+
+    public String getRows_naming_type() {
+        return rows_naming_type;
+    }
+
+    public List<String> getBlank_seats_simple_array() {
+        return blank_seats_simple_array;
+    }
+
+    public List<Blank_seats_obj_array> getBlank_seats_obj_array() {
+        return blank_seats_obj_array;
+    }
+
+    public List<Integer> getSupported_levels() {
+        return supported_levels;
+    }
+
+    public Boolean getHas_multi_levels() {
+        return has_multi_levels;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public String get_id() {
+        return _id;
+    }
 }
